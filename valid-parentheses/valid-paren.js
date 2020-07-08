@@ -3,46 +3,47 @@
 
 // look for the first parenthesis and then the second parenthasis. and then check within these parenthasis
 var isValid = function(s) {
-  // let start = ['(', '{', '['];
-  // let end = [')', '}', ']'];
-  let pairs = {
-      '(' : ')',
-      '{' : '}',
-      '[' : ']'
-  };
-  // split the string to array
-  let arr = s.split('');
-  let valid = true;
+  // IDEA: iterate through the string and use stack to make sure that a closing paren is        matched to the closest open paren
+  // make stack arr
+  let stack = []
   
-  let checkForInvalid = (block) => {
-      // this funtion checks for invalid inside a block of parens
-          if (block.length === 1) {
-              valid = false;
-              return;
+  // define open/close obj
+  let open = {
+      '(': ')',
+      '[': ']',
+      '{': '}',
+  };
+  let close = {
+      ')': '(',
+      ']': '[',
+      '}': '{',
+  };
+  
+  // split string to arr
+  let arr = s.split('')
+  
+  // iterate throug arr
+  for (let i = 0; i < arr.length; i++) {
+      // if open, push to stack
+      if (open[arr[i]]) {
+          stack.push(arr[i]);
+      } else {
+          // if close, check to see if most recent open is matching paren
+          if (close[arr[i]] === stack[stack.length -1]) {
+              // if matching delete from stack
+              stack.length --;
+          } else {
+              // if not matching return false
+              return false;
           }
-          if (block.length > 2) {
-              let startParen = block[0];
+      }
+  }
 
-              if (!(startParen in pairs)) {
-              // if the block starts with closing paren its invalid
-              valid = false;
-              return;
-              }
-
-              // find index of end parens
-              let indexOfClosingParen = block.indexOf(pairs[startParen])
-              if (indexOfClosingParen < 0) {
-                  valid = false;
-                  return;
-              }
-              let insideBlock = block.slice(1, indexOfClosingParen);
-              console.log(insideBlock)
-              checkForInvalid(insideBlock);
-          }    
-      
+  if (stack.length === 0) {
+      // if array.length is 0
+      // return true
+      return true
   }
   
-  checkForInvalid(arr);
-  
-  return valid;
-};
+  return false
+}
