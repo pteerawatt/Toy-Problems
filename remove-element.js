@@ -30,3 +30,34 @@ var removeElement = function(nums, val) {
    // set array length = index to slice off the rest
    // return index tracker
 };
+
+class MyQueue {
+  constructor() {
+  this.first = 0
+  this.key = 0
+  this.length = 0
+  this.storage = {}
+  };
+  
+  add(val) {
+      this.storage[this.key] = val;
+      this.key++;
+      this.length++;
+  };
+  dequeue() {
+      if (this.length > 0) {
+          delete this.storage[this.first];
+          this.first++;
+          this.length--;
+      }
+  };
+  length() {
+      return this.length;
+  }
+}
+
+queue = new MyQueue()
+queue.add(2)
+queue.add(3)
+queue.dequeue()
+console.log(queue.length)
