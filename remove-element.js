@@ -21,19 +21,23 @@ var removeElement = function(nums, val) {
            // if there is a queue
            if (queue.length > 0) {
                // get the index at duplicate value
+               let index = queue.dequeue();
                // set this value to the value at duplicated index
+               nums[index] = nums[i];
            }
            // increment length tracker
-       }
-           
+           length++;
+       }  
        // else its equal val
+       else {
            // we store the index of this val in queue
+           queue.add(i);
+       }   
    }
-       
-           
-   
    // set array length = index to slice off the rest
+   nums.length = length;
    // return length tracker
+   return length;
 };
 
 class MyQueue {
