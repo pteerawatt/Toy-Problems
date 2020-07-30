@@ -15,7 +15,7 @@ var removeElement = function(nums, val) {
    let queue = new MyQueue();
    
    // iterate through the array
-   for (let i = 0; i <nums.length; i++) {
+   for (let i = 0; i < nums.length; i++) {
        // if not equal val
        if (nums[i] !== val) {
            // if there is a queue
@@ -24,6 +24,8 @@ var removeElement = function(nums, val) {
                let index = queue.dequeue();
                // set this value to the value at duplicated index
                nums[index] = nums[i];
+               // mark this index as well 
+               queue.add(i)
            }
            // increment length tracker
            length++;
@@ -32,10 +34,15 @@ var removeElement = function(nums, val) {
        else {
            // we store the index of this val in queue
            queue.add(i);
-       }   
+       }
+           
    }
+       
+           
+   
    // set array length = index to slice off the rest
-   nums.length = length;
+   // nums.length = length;
+   console.log(nums)
    // return length tracker
    return length;
 };
