@@ -7,27 +7,24 @@ class App extends React.Component {
     this.handleClickFirstPage = this.handleClickFirstPage.bind(this);
   }
 
-  handleClickFirstPage() {
+  changePage(e, page) {
+    e.preventDefault()
     this.setState({
-      page: 'secondpage'
+      page: page
     })
   }
 
-  handleclickSecondPage() {
-    $ajax({
-      type: POST
-    })
-    this.setStage({
-      page: 'thirdpage'
-    })
-  }
   render() {
     let page;
     if (this.state = 'firstpage') {
       page = (
         <div>
           <h1>first page</h1>
-          <button onClick={this.handleClickFirstPage}>next</button>
+          <button onClick={
+            (e) => {this.changePage(e, 'secondpage')}
+          }>
+            next
+          </button>
         </div>
       )
     } else if (this.state = 'secondpage') {
@@ -37,7 +34,9 @@ class App extends React.Component {
           <form onSumbit={this.handleclickSecondPage}>
             <input>
             </input>
-            <button></button>
+            <button onClick={
+              (e) => {this,this.changePage(e, 'thirdpage')}
+            }></button>
           </form>
         </div>
       )
@@ -47,7 +46,3 @@ class App extends React.Component {
     )
   }
 }
-
-
-
-
