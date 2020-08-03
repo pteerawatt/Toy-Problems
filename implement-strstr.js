@@ -4,22 +4,20 @@
 
 var strStr = function(haystack, needle) {
   // main idea is we interate over haystack and we check to see if the following elements align with needle. we do this by recursively calling haystack and decreasing length
-  
   //edge cases
-  if (needle = '') {
-      return -1;
+  if (needle === '') {
+      return 0;
   }
   // current index
   let currIndex = 0;
   // match index
-  let matchIndex = false;
+  let matchIndex = -1;
   // recursive function. takes haystack
   let iterate = (hay, ned) => {
-      // increase curr index
-      currIndex++;
   // basecase: if needle is empty, we found a match
       if (ned === '') {
           // return match index
+          console.log(matchIndex)
           return matchIndex;
       } else if (hay === '') {
   // basecase: if haystack is empty
@@ -30,17 +28,18 @@ var strStr = function(haystack, needle) {
       if (hay[0] === ned[0]) {
           // if elements matches recurse(haystack -1, needle -1)
               // if match index is false, set match index to current index
-          if (matchIndex === false) {
+          if (matchIndex === -1) {
               matchIndex = currIndex;
+              currIndex++;
           }
-          iterate(hay.substring(1), ned.substring(1));
+          return iterate(hay.substring(1), ned.substring(1));
       } else {
           // else if not match, recuse(haystack -1, needle)
               // set match index to false
-          matchIndex = false;
-          iterate(hay.substring(1), needle)
+          currIndex++;
+          matchIndex = -1;
+          return iterate(hay.substring(1), needle)
       }
   }
-  
   return iterate(haystack, needle);
 };
