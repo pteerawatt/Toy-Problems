@@ -50,7 +50,7 @@ var strStr = function(haystack, needle) {
       return 0;
   }
   // iterate over haystack
-  for (let i = 0; i < haystack.length; i++) {
+  for (let i = 0; i < haystack.length - (needle.length -1); i++) {
       // define first matched index here
       let index = -1;
       // iterate through needle
