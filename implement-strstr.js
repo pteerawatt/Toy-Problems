@@ -59,6 +59,7 @@ var strStr = function(haystack, needle) {
               break;
           }
           if (j === needle.length -1) {
+              // if we got the end of needle, we found a match so return the original index we start looping at haystack
               return i;
           }
       }  
