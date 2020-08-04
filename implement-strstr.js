@@ -46,13 +46,31 @@
 
 // this new approach is to iterate over the haystack and when we find a match iterate over the needle. we have a point to keep track of first matched index. if we finish iterating over haystack and all matches we return matched index.
 var strStr = function(haystack, needle) {
+  if (needle === '') {
+      return 0;
+  }
   // iterate over haystack
+  for (let i = 0; i < haystack.length; i++) {
       // define first matched index here
+      let index = -1;
       // iterate through needle
-          // if first matched 
+      for (let j = 0; j < needle.length; j++) {
+          if (needle[j] === haystack[i]) {
+              // if first matched 
               // if index = -1, set it to i
-          // if miss match
+              if (index === -1) {
+                  index = i;
+              }
+          }
+          if (needle[j] !== haystack[i+j]) {
+              // if miss match
               // reset matched index, break
-          //return matched index
-
+              break;
+          }
+          if (j === needle.length -1) {
+              return index;
+          }
+      }  
+  }  
+  return -1;
 };
