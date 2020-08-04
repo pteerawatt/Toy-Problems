@@ -51,24 +51,15 @@ var strStr = function(haystack, needle) {
   }
   // iterate over haystack
   for (let i = 0; i < haystack.length - (needle.length -1); i++) {
-      // define first matched index here
-      let index = -1;
       // iterate through needle
       for (let j = 0; j < needle.length; j++) {
-          if (needle[j] === haystack[i]) {
-              // if first matched 
-              // if index = -1, set it to i
-              if (index === -1) {
-                  index = i;
-              }
-          }
           if (needle[j] !== haystack[i+j]) {
               // if miss match
               // reset matched index, break
               break;
           }
           if (j === needle.length -1) {
-              return index;
+              return i;
           }
       }  
   }  
