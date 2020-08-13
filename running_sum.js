@@ -14,6 +14,4 @@ var runningSum = function(nums) {
 };
 
 // the above way works but this uses reduce to make things 1 line.
-var runningSum = function(nums) {
-  return nums.reduce((acc, curr, index) => [...acc, curr + (acc[index -1] || 0)], [])
-};
+var runningSum = (nums) => nums.reduce((acc, curr, index) => [...acc, curr + (acc[index -1] || 0)], []);
