@@ -5,8 +5,10 @@
 // output: [1, 3, 6, 10]
 
 var runningSum = function(nums) {
-  // keep track of sum
-    // while looping
-        // add sum to current element
-        // set new sum
+  let arr = [];
+  for (let i = 0; i < nums.length; i++) {
+    // add sum to current element
+    arr.push(nums[i] + (arr[i - 1] || 0))
+  }
+  return arr;
 };
