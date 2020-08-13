@@ -5,5 +5,8 @@
 // output: [1, 3, 6, 10]
 
 var runningSum = function(nums) {
-  
+  // keep track of sum
+    // while looping
+        // add sum to current element
+        // set new sum
 };
