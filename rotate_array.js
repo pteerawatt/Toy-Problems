@@ -10,7 +10,6 @@ var rotate = function(nums, k) {
 
 
 // O1 solution attempt
-    // this one does not work because it doesnt take into account when k is greater than the nums length and you have to shift more than one round
 // iterate from beginning to end
 // so change the beginning number to the array[i + (length - k)]
     // store replaced number into map obj
@@ -24,10 +23,14 @@ var rotate = function(nums, k) {
         // read from map obj
       // else change the element to the one at array[i + (length -k)]
       let storage = {}
-      // iterate from beginning to end
       let queue = 0;
       let firstOnQueue = 0;
+
+      // if k > nums.length we find only the shifts we need
+      k = k % nums.length;
       let startIndex = nums.length - k;
+
+      // iterate over nums
       for (let i = 0; i < nums.length; i++) {
           if (i + startIndex >= nums.length) {
               // index does not exist, we read from Map
@@ -46,4 +49,6 @@ var rotate = function(nums, k) {
           }
       }
       return nums;
-  };
+    };
+
+// another solution is to rotate the whole array, then rotate the first half and rotate the second half. the halfs of the array are divided by at index k - length
