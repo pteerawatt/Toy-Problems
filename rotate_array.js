@@ -7,3 +7,12 @@ var rotate = function(nums, k) {
   // loop through array again till its before (length - k)
   // return array
 };
+
+
+// O1 solution
+// iterate from beginning to end
+// so change the beginning number to the array[i + (length - k)]
+    // store replaced number into map obj
+    // if index is no longer valed (its greate than total length)
+      // read from map obj
+    // else change the element to the one at array[i + (length -k)]
