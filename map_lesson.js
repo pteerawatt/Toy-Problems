@@ -18,12 +18,9 @@
 
 
 // ---------Section Two---------
+// // GOAL: add 1 to every element in the array
 
 // let values = [1, 2, 3];
-// // This function adds 1 to the input and returns the result
-// let addOne = (x) => {
-//   return x + 1;
-// }
 
 // let mapArray = /*TO_DO*/.map((/*TO_DO*/, /*TO_DO*/, /*TO_DO*/) => {
 //   /*TO_DO*/
