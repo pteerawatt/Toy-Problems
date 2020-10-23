@@ -1,7 +1,7 @@
 // ---------Section One---------
 
 // // This function returns a string
-// let smallDynomite = () => {
+// let smallDynamite = () => {
 //   return 'Boom';
 // };
 
