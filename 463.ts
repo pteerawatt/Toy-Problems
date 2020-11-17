@@ -9,9 +9,9 @@ function islandPerimeter(grid: number[][]): number {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j] === 1) {
                 if (!grid[i][j - 1]) count++;
-                if (!grid[i - 1][j]) count++;
+                if (!grid[i - 1] || !grid[i - 1][j]) count++;
                 if (!grid[i][j + 1]) count++;
-                if (!grid[i + 1][j]) count++;
+                if (!grid[i + 1] || !grid[i + 1][j]) count++;
             }
         }
     }
