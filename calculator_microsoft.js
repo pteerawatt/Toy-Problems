@@ -15,7 +15,7 @@ let calculator = (string) => {
     }
     if (string[i] === '*') {
       let leftNum;
-      if (!stack.length) leftNum = +string.slice(left, i);
+      if (!stack.length || typeof stack[stack.length - 1] === 'string') leftNum = +string.slice(left, i);
       else leftNum = stack.pop()
       left = i + 1;
       // get the next number
@@ -31,7 +31,7 @@ let calculator = (string) => {
     if (string[i] === '/') {
       // do the same as *
       let leftNum;
-      if (!stack.length) leftNum = +string.slice(left, i);
+      if (!stack.length || typeof stack[stack.length - 1] === 'string') leftNum = +string.slice(left, i);
       else leftNum = stack.pop()
       left = i + 1;
       // get the next number
