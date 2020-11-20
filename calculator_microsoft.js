@@ -1,4 +1,3 @@
-
 let calculator = (string) => {
   string = string.split(" ").join("");
   let stack = [];
@@ -28,6 +27,7 @@ let calculator = (string) => {
       let rightNum = +string.slice(left, i);
       // push operation result to stack
       stack.push(leftNum * rightNum);
+      left = i + 1;
     }
     if (string[i] === '/') {
       // do the same as *
@@ -44,8 +44,14 @@ let calculator = (string) => {
       let rightNum = +string.slice(left, i);
       // push operation result to stack
       stack.push(leftNum / rightNum);
+      left = i + 1;
+    }
+    if (i === string.length - 1) {
+//       console.log(string.slice(left))
+      stack.push(+string.slice(left));
     }
   }
+//   console.log(stack)
   // loop over the stack and perform operations + or -
   let result = stack[0];
   if (stack.length > 1) {
@@ -56,7 +62,7 @@ let calculator = (string) => {
   }
 
   return result;  
- }
+}
 
 
 let test = ' 6 *2/2'
