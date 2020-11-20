@@ -23,7 +23,7 @@ let calculator = (string) => {
           // keep iterating and shifting left pointer
               // after the loop it means we found an operator
       i++;
-      while (string[i] !== '+' && string[i] !== '-' && string[i] !== '+' && string[i] !== '/' && i < string.length) i++;
+      while (string[i] !== '+' && string[i] !== '-' && string[i] !== '*' && string[i] !== '/' && i < string.length) i++;
       let rightNum = +string.slice(left, i);
       // push operation result to stack
       stack.push(leftNum * rightNum);
@@ -40,7 +40,7 @@ let calculator = (string) => {
           // keep iterating and shifting left pointer
               // after the loop it means we found an operator
       i++;
-      while (string[i] !== '+' && string[i] !== '-' && string[i] !== '+' && string[i] !== '/' && i < string.length) i++;
+      while (string[i] !== '+' && string[i] !== '-' && string[i] !== '*' && string[i] !== '/' && i < string.length) i++;
       let rightNum = +string.slice(left, i);
       // push operation result to stack
       stack.push(leftNum / rightNum);
