@@ -3,6 +3,7 @@ let calculator = (string) => {
   string = string.split(" ").join("");
   let stack = [];
   let left = 0;
+
   // iterate over to find operators. if its - or + add the previous item of the string to the stack. if its / or * handle the operation then push result to stack
   for (let i = 0; i < string.length; i++) {
     if (string[i] === '+' || string[i] === '-') {
@@ -44,8 +45,18 @@ let calculator = (string) => {
       // push operation result to stack
       stack.push(leftNum / rightNum);
     }
-  }  
-}
+  }
+  // loop over the stack and perform operations + or -
+  let result = stack[0];
+  if (stack.length > 1) {
+    for (let i = 1; i < stack.length; i += 2 ) {
+      if (stack[i] === '+') result += stack[i + 1];
+      else result -= stack[i + 1];
+    }
+  }
+
+  return result;  
+ }
 
 
 let test = ' 6 *2/2'
