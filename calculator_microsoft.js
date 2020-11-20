@@ -28,6 +28,7 @@ let calculator = (string) => {
       // push operation result to stack
       stack.push(leftNum * rightNum);
       left = i + 1;
+      if (i < string.length) i--;
     }
     if (string[i] === '/') {
       // do the same as *
@@ -45,6 +46,7 @@ let calculator = (string) => {
       // push operation result to stack
       stack.push(leftNum / rightNum);
       left = i + 1;
+      if (i < string.length) i--;
     }
     if (i === string.length - 1) {
 //       console.log(string.slice(left))
