@@ -7,5 +7,5 @@
 // idea: if a player always choose one. every even number will always lead to first player win. so all we have to do is retrun true if N is even.
 
 const divisorGame = (N: number): boolean => {
-
+  return N % 2 === 0
 }
