@@ -14,13 +14,19 @@
 
 const decrypt = (code, k: number): number[] => {
   let result = [];
-  let arrSum = code.reduce((x, y) => x + y);
-  console.log(arrSum, code)
-  // for (let i = 0; i)
-  // for (let i = 0; i < code.length; i++) {
-  //   let total = 0;
-  //   for (let j = k; k < )
-  // }
+  if (k > 0) {
+    for (let i = 0; i < code.length; i++) {
+        let limits = k;
+        let j = i + 1;
+        let sum = 0;
+        while (limits) {
+            sum += code[j % code.length];
+            j++;
+            limits--;
+        }
+        result.push(sum)
+    }
+  }
 
   return result;
 }
