@@ -12,23 +12,32 @@
 // idea is to loop over array
   // inner loop will add 
 
-const decrypt = (code, k: number): number[] => {
+const decrypt = (code: number[], k: number): number[] => {
   let result = [];
-  if (k > 0) {
+    if (k === 0) return code.map(e => 0);
     for (let i = 0; i < code.length; i++) {
-        let limits = k;
-        let j = i + 1;
+        let limits = Math.abs(k);
         let sum = 0;
-        while (limits) {
-            sum += code[j % code.length];
-            j++;
-            limits--;
+        if (k > 0) {
+            let j = i + 1
+            while (limits) {
+                sum += code[j % code.length];
+                j++;
+                limits--;
+            }
+            result.push(sum)
+        } else {
+            let j = i - 1;
+            while (limits) {
+                sum += code[(code.length + j) % code.length];
+                j--;
+                limits--;
+            }
+            result.push(sum);
         }
-        result.push(sum)
+        
     }
-  }
-
-  return result;
+    
+    
+    return result;
 }
-
-decrypt([1,2,3], 2)
