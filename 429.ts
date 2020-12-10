@@ -17,10 +17,15 @@
 
 function levelOrder(root: Node | null): number[][] {
 	let result = [];
-  let queue = [];
-    
-  const traverse = (node) => {
-        
+  
+  // use recursion to shift queue and push value to result then recurse all the children.  
+  const traverse = (node: Node, level = 0) => {
+        // basecase: if !node
+        // push node to queue
+        // shift queue
+        // push shifted val to result
+        // loop over children and recurse.
+          // the level will be incremented each time.
   }
     
   traverse(root);
