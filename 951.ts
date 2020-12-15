@@ -51,7 +51,7 @@ function flipEquiv(root1: TreeNode | null, root2: TreeNode | null): boolean {
         if (current2.left) {
           queue2.push(current2.left)
         } else queue2.push(null)
-        if (current1.right) {
+        if (current2.right) {
           queue2.push(current2.right)
         } else queue2.push(null)
       } else treeArr2.push(null)
@@ -64,6 +64,7 @@ function flipEquiv(root1: TreeNode | null, root2: TreeNode | null): boolean {
     // if not equal, return false
     // clear treeArr
     if (treeArr1.length === layerLength && treeArr2.length === layerLength) {
+      console.log(treeArr1, treeArr2)
       layerLength *= 2;
       for (let i = 0, j = treeArr1.length - 1; i < treeArr1.length; i++, j--) {
         if (treeArr1[i] !== treeArr2[j]) return false;
