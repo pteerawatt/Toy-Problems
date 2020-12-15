@@ -2,17 +2,16 @@
 
 // idea: to use recurusion to push values onto result;
 
-/**
- * Definition for node.
- * class Node {
- *     val: number
- *     children: Node[]
- *     constructor(val?: number) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.children = []
- *     }
- * }
- */
+
+class Node {
+  val: number
+  children: Node[]
+  constructor(val?: number) {
+    this.val = (val===undefined ? 0 : val)
+    this.children = []
+  }
+}
+
 
 
 function levelOrder(root: Node | null): number[][] {
@@ -21,11 +20,11 @@ function levelOrder(root: Node | null): number[][] {
   // use recursion to shift queue and push value to result then recurse all the children.  
   const traverse = (node: Node, level = 0) => {
         // basecase: if !node
-        // push node to queue
-        // shift queue
-        // push shifted val to result
+        if (!node) return;
+        if (!result[level]) result[level] = [];
         // loop over children and recurse.
           // the level will be incremented each time.
+        node.children.forEach((child) => traverse(child, level + 1));
   }
     
   traverse(root);
