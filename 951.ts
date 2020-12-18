@@ -1,8 +1,8 @@
-// flip equivalent binary trees
+// see if its possible to flip tree x to be equal to tree y. note that not all nodes need to swap
 
 // write a function that determines if tree y is a flip of tree x (mirrior image)
 
-
+// **** this solution below does not work because it uses BFS. we need to use DFS because not all nodes need to be swap.
 class TreeNode {
   val: number
   left: TreeNode | null
@@ -76,5 +76,15 @@ function flipEquiv(root1: TreeNode | null, root2: TreeNode | null): boolean {
 
   return true;
 };
-// 1 2 3 4 5 6 7 8
-// 1 3 2 6 4 5 8 7
+
+
+//** this solution works but bad time complexity */
+
+function flipEquiv2(root1: TreeNode | null, root2: TreeNode | null): boolean {
+  if (!root1 && !root2) return true;
+  if (!root1 || !root2) return false;
+  if (root1.val !== root2.val) return false;
+  let reverse = flipEquiv(root1.left, root2.right) && flipEquiv(root1.right, root2.left);
+  let keep = flipEquiv(root1.left, root2.left) && flipEquiv(root1.right, root2.right)
+  return  reverse || keep
+};
