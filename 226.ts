@@ -11,7 +11,7 @@ class TreeNode {
 }
 
 // idea: use DFS to traverse the tree and reverse the values
-const invertTree = (root: TreeNode | null): TreeNode | null => {
+const invertTreeDFS = (root: TreeNode | null): TreeNode | null => {
   // base case is if root is null, return
   if (!root) return null;
   // save the left and save the right, then switch the values
@@ -19,8 +19,29 @@ const invertTree = (root: TreeNode | null): TreeNode | null => {
   root.left = root.right;
   root.right = left;
   // recuse left side and recurse right side
-  invertTree(root.left);
-  invertTree(root.right);
+  invertTreeDFS(root.left);
+  invertTreeDFS(root.right);
 
+  return root;
+}
+
+// idea: use BFS to traverse the tree and reverse the values
+const invertTreeBFS = (root: TreeNode | null): TreeNode => {
+  // use queue DS to have order of traverse
+  // use while loop to dequeue and swap nodes
+  let queue: TreeNode[] = [root];
+  let current;
+
+  while (queue.length) {
+    current = queue.shift();
+    if (current) {
+      let left = current.left;
+      current.left = current.right;
+      current.right = left;
+      queue.push(current.left);
+      queue.push(current.right);
+    }
+  }
+  return root;
   return root;
 }
