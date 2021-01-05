@@ -9,5 +9,16 @@
 // return max - min
 
 function smallestRangeI(A: number[], K: number): number {
-
+  let min = Infinity;
+  let max = -Infinity;
+  
+  for (let e of A) {
+      min = Math.min(min, e);
+      max = Math.max(max, e);
+  }
+  min += K;
+  max -= K;
+  
+  if ((max - min) < 0) return 0;
+  else return max - min;
 };
