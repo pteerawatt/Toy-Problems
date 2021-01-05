@@ -2,7 +2,7 @@
 
 // idea: loop over the array and find the sum. meanwhile we keep track of 5% index and the min/max value. return average.
 
-function trimMean(arr: number[]): number {
+function trimMean1(arr: number[]): number {
   let min = Infinity;
   let max = -Infinity;
   let sum = 0;
