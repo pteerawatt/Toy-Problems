@@ -22,3 +22,10 @@ function smallestRangeI(A: number[], K: number): number {
   if ((max - min) < 0) return 0;
   else return max - min;
 };
+
+// cleaner solution and slightly faster
+function smallestRangeIShorter(A: number[], K: number): number {
+  let min = Math.min(...A) + K;
+  let max = Math.max(...A) - K;
+  return (max - min) > 0 ? max - min : 0;
+};
