@@ -18,14 +18,14 @@ function frequencySort(nums: number[]): number[] {
   for (let key in frequency) {
     heap.insert(+key, frequency[key]);
   }
-  console.log(heap.heap)
   let resultArr: number[] = [];
   while (heap.heap.length) {
     // dequeue and add to collection
-    console.log(heap.dequeue())
+    let dequeued = heap.dequeue();
+    for (let i = dequeued[1]; i > 0; i--) resultArr.push(dequeued[0]);
 
   }
-  return [1];
+  return resultArr;
 };
 
 class MinHeap {
@@ -36,7 +36,6 @@ class MinHeap {
 
   insert(num, freq) {
     this.heap.push([num, freq]);
-    // child = 2n + 1 or 2n + 2
     let parentIdx = Math.floor((this.heap.length - 1) / 2);
     let childIdx = this.heap.length - 1;
     let parent;
