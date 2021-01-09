@@ -71,7 +71,7 @@ class MinHeap {
     let parent;
     let leftChild;
     let rightChild;
-    while (leftChildIdx < this.heap.length || rightChildIdx < this.heap.length) {
+    while (true) {
       parent = this.heap[parentIdx];
       let swap = null;
       if (leftChildIdx < this.heap.length) {
@@ -85,19 +85,19 @@ class MinHeap {
       }
       if (rightChildIdx < this.heap.length) {
         rightChild = this.heap[rightChildIdx];
-        if (parent[1] > rightChild[1] && rightChild[1] < leftChild[1]) {
+        if ((swap === null && parent[1] > rightChild[1]) || (swap !== null && rightChild[1] < leftChild[1])) {
           swap = rightChildIdx;
         }
-        if ((parent[1] === rightChild[1] && parent[0] < rightChild[0]) && (rightChild[1] === leftChild[1] && rightChild[0] > leftChild[0])) {
+        if ((swap === null && parent[1] === rightChild[1] && parent[0] < rightChild[0]) || (swap !== null && rightChild[1] === leftChild[1] && rightChild[0] > leftChild[0])) {
           swap = rightChildIdx;
         }
       }
-      if (swap) {
-        [this.heap[parentIdx], this.heap[swap]] = [this.heap[swap], this.heap[parentIdx]];
-        parentIdx = swap || parentIdx;
-        leftChildIdx = 2 * parentIdx + 1;
-        rightChildIdx = 2 * parentIdx + 2;
-      } else break;
+      if (swap === null) break
+
+      [this.heap[parentIdx], this.heap[swap]] = [this.heap[swap], this.heap[parentIdx]];
+      parentIdx = swap;
+      leftChildIdx = 2 * parentIdx + 1;
+      rightChildIdx = 2 * parentIdx + 2;
 
     }
 
