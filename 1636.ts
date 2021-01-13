@@ -106,3 +106,31 @@ class MinHeap {
     return output;
   }
 }
+
+// not exactly sure why the above method isnt working 100% of the time but I believe there is a bug in the swapping the right child. In most examples the test are still passing.
+
+
+// below we use memo and then JS sort.
+
+function frequencySortJS(nums: number[]): number[] {
+  let frequency = {};
+  for (let i = 0; i < nums.length; i++) frequency[nums[i]] = (frequency[nums[i]] || 0) + 1;
+  
+  let freqArr = [];
+  for (let key in frequency) freqArr.push([+key, frequency[key]]);
+  
+  freqArr.sort((a, b) => {
+      if (a[1] === b[1]) return a[0] < b[0] ? 1 : -1;
+      else if (a[1] > b[1]) return 1;
+      else return -1;
+  })
+
+  let result = [];
+  for (let i = 0; i < freqArr.length; i++) {
+      for (let j = freqArr[i][1]; j > 0; j--) {
+          result.push(freqArr[i][0]);
+      }
+  }
+
+  return result;
+};
