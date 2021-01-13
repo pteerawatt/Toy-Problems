@@ -134,3 +134,13 @@ function frequencySortJS(nums: number[]): number[] {
 
   return result;
 };
+
+function frequencySortJSV2(nums: number[]): number[] {
+  let frequency = {};
+  for (let i = 0; i < nums.length; i++) frequency[nums[i]] = (frequency[nums[i]] || 0) + 1;
+  
+  let freqArr = [];
+  for (let key in frequency) freqArr.push([+key, frequency[key]]);
+  
+  return nums.sort((a, b) => frequency[a] - frequency[b] || b - a )
+};
