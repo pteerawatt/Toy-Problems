@@ -9,27 +9,44 @@
 // each left over is divided by 10 when moving to the next digit
 // when one linked list is out of numbers, we need to carry out the left over sum.
 // we stop recursion when l1.val + l2.val + leftOver = 0
+class ListNode {
+  val: number;
+  next: ListNode | null;
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+}
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null, result = new ListNode(), leftOver = 0): ListNode | null {
   let val1 = l1 === null ? 0 : l1.val;
   let val2 = l2 === null ? 0 : l2.val;
   let sum = val1 + val2 + leftOver;
   let value = sum % 10;
-  leftOver = sum > 9 ? Math.floor(sum / 10) : 0;
+  leftOver = sum > 9 ? Math.floor(sum/10) : 0;
   result.val = value;
   if (!l1.next && !l2.next) {
-    if (leftOver) {
-      if (leftOver > 9) {
-        result.next.val = leftOver % 10;
-        result.next.next = new ListNode();
-        result.next.next.val = Math.floor(leftOver / 10);
-      } else {
-        result.next.val = leftOver;
+      if (leftOver) {
+          result.next = new ListNode();
+          if (leftOver > 9) {
+              result.next.val = leftOver % 10;
+              result.next.next = new ListNode();
+              result.next.next.val = Math.floor(leftOver/10);
+          } else {
+              result.next.val = leftOver;
+          }
       }
-    }
-    return;
+      return result;
   }
   result.next = new ListNode();
+  if (!l1.next) {
+      l1.next = new ListNode();
+      l1.next.val = 0;
+  }
+  if (!l2.next) {
+      l2.next = new ListNode();
+      l2.next.val = 0;
+  }
   addTwoNumbers(l1.next, l2.next, result.next, leftOver);
   return result;
 };
