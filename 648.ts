@@ -10,7 +10,6 @@
 
 
 // this is brute force way of doing it
-// no improvement in time complexity
 function replaceWords(dictionary: string[], sentence: string): string {
   return sentence.split(" ").map((word) => {
       let replacement = null
@@ -28,7 +27,7 @@ function replaceWords(dictionary: string[], sentence: string): string {
 
 
 // using Trie
-// barely improved in time complexity now at 25%
+// no improvement in time complexity
 
 function replaceWords(dictionary: string[], sentence: string): string {
   let trie = new Trie();
