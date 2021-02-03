@@ -1,23 +1,7 @@
-// Implement Trie (Prefix Tree)
-
-// implement a trie with insert, search and startWith
-// a trie is a type of tree data structure that stores a sequence of characters that can be checked later.
-
-// insert - insert string to trie
-// search - find if the word exist
-// startwith - find if path exist
-
-/**
- * Your Trie object will be instantiated and called as such:
- * var obj = new Trie()
- * obj.insert(word)
- * var param_2 = obj.search(word)
- * var param_3 = obj.startsWith(prefix)
- */
-
 class Trie {
+  root: trieNode;
   constructor() {
-
+    this.root = new trieNode("");
   }
 
   insert(word: string): void {
@@ -33,15 +17,12 @@ class Trie {
         currentNode.end = true;
         break;
       }
-      if (currentNode.child[word[0]]) {
-        currentNode = currentNode.child[word[0]];
-        word = word.substring(1);
-      } else {
+      if (!currentNode.child[word[0]]) {
         let newNode = new trieNode(word[0]);
         currentNode.child[word[0]] = newNode;
-        currentNode = currentNode.child[word[0]];
-        word = word.substring(1);
       }
+      currentNode = currentNode.child[word[0]];
+      word = word.substring(1);
     }
   }
 
@@ -60,7 +41,16 @@ class Trie {
   }
 
   startsWith(prefix: string): boolean {
-
+    // iterate down
+    // once we finish we return true if the path is there
+    let currentNode = this.root;
+    while (prefix.length >= 0) {
+      if (!prefix.length) return true
+      if (currentNode.child[prefix[0]]) {
+        currentNode = currentNode.child[prefix[0]];
+        prefix = prefix.substring(1);
+      } else return false;
+    }
   }
 }
 
@@ -69,7 +59,7 @@ class trieNode {
   child: object;
   end: boolean;
   constructor(val) {
-    this.val = val,
+    this.val = val || "",
       this.child = {},
       this.end = false
   }
