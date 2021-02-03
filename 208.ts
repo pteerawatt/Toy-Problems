@@ -30,7 +30,7 @@ class Trie {
     let currentNode = this.root;
     while (word.length >= 0) {
       if (word.length === 0) {
-        currentNode.end === true;
+        currentNode.end = true;
         break;
       }
       if (currentNode.child[word[0]]) {
@@ -46,7 +46,17 @@ class Trie {
   }
 
   search(word: string): boolean {
-
+    // iterate down the trie
+    // once we are at the end, we check if there is an end here
+    let currentNode = this.root;
+    while (word.length >= 0) {
+      // console.log(currentNode.val, currentNode.end)
+      if (!word.length) return currentNode.end;
+      if (currentNode.child[word[0]]) {
+        currentNode = currentNode.child[word[0]];
+        word = word.substring(1);
+      } else return false;
+    }
   }
 
   startsWith(prefix: string): boolean {
