@@ -21,7 +21,28 @@ class Trie {
   }
 
   insert(word: string): void {
-
+    // check to see if character already exist
+    // if exist, progress fruther
+    // if character does not exist
+    // create a new node
+    // add it to the tri
+    // progress
+    let currentNode = this.root;
+    while (word.length >= 0) {
+      if (word.length === 0) {
+        currentNode.end === true;
+        break;
+      }
+      if (currentNode.child[word[0]]) {
+        currentNode = currentNode.child[word[0]];
+        word = word.substring(1);
+      } else {
+        let newNode = new trieNode(word[0]);
+        currentNode.child[word[0]] = newNode;
+        currentNode = currentNode.child[word[0]];
+        word = word.substring(1);
+      }
+    }
   }
 
   search(word: string): boolean {
@@ -33,9 +54,12 @@ class Trie {
   }
 }
 
-class Node {
+class trieNode {
+  val: string;
+  child: object;
+  end: boolean;
   constructor(val) {
-      this.val = val,
+    this.val = val,
       this.child = {},
       this.end = false
   }
