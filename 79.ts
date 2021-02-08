@@ -43,3 +43,40 @@ function NOTWORKING_exist(board: string[][], word: string): boolean {
   }
   return false;
 };
+
+function exist(board: string[][], word: string): boolean {
+  // iterate through the array
+      // check all 4 sides
+          // if any side matches, recurse
+          // keep track of where we were
+              // mark and then demark
+  let checkAll = (i , j, word): boolean => {
+      // if word.length = 1
+          // return match or no-match
+      if (i < 0 || i > board.length - 1 || j < 0 || j > board[0].length - 1) return false
+      if (word.length === 1) return word === board[i][j] ? true : false;
+      // check if word[0] matches current box at i/j
+          // if not match return false
+          // mark box
+          // if match we continue to check
+          // unmark box
+      if (word[0] === board[i][j]) {
+          let saved = word[0];
+          board[i][j] = "";
+          
+          if (checkAll(i - 1, j, word.substring(1))) return true;
+          if (checkAll(i, j + 1, word.substring(1))) return true;
+          if (checkAll(i + 1, j, word.substring(1))) return true;
+          if (checkAll(i, j - 1, word.substring(1))) return true;
+          
+          board[i][j] = saved;
+      } else return false
+  }
+  
+  for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j <board[i].length; j++) {
+          if (checkAll(i, j, word)) return true;
+      }
+  }
+  return false;
+};
