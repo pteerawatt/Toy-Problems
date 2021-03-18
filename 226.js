@@ -37,3 +37,22 @@ var invertTree = function(root) {
   }
   return root;
 };
+
+
+// below is a better solution with better space complexity
+  // we dont have to use queue, just reverse down the tree
+var invertTree = function(root) {
+  if (!root) return null
+  const invert = (root) => {
+      if (!root){return}
+      let left = root.left
+      root.left = root.right
+      root.right = left
+      invert(root.left)
+      invert(root.right)
+      return root
+  }
+  
+  root = invert(root)
+  return root
+};
